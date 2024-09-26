@@ -5,12 +5,12 @@ require 'rails/generators'
 module Rails
   module Generators
     class TabulatorGenerator < ::Rails::Generators::Base
-      desc 'Creates a *_table model in the app/tabulators directory.'
+      desc 'Creates a *_table model in the app/tabulator directory.'
       source_root File.expand_path('templates', __dir__)
       argument :name, type: :string
 
       def generate_tabulator
-        template 'tabulator.rb', File.join('app', 'tabulators', "#{tabulator_path}.rb")
+        template 'tabulator.rb', File.join('app', 'tabulator', "#{tabulator_path}.rb")
       end
 
       def tabulator_name
