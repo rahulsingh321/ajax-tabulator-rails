@@ -70,11 +70,11 @@ module AjaxTabulatorRails
           values = value.split(',').map { |v| "'#{sanitize_sql(v)}'" }.join(', ')
           "#{backend_field} IN (#{values})" if value.present?
         when 'starts'
-          "#{backend_field} LIKE '#{sanitized_value}%'" if value.present?
+          "#{backend_field} ILIKE '#{sanitized_value}%'" if value.present?
         when 'ends'
-          "#{backend_field} LIKE '%#{sanitized_value}'" if value.present?
+          "#{backend_field} ILIKE '%#{sanitized_value}'" if value.present?
         when 'like'
-          "#{backend_field} LIKE '%#{sanitized_value}%'" if value.present?
+          "#{backend_field} ILIKE '%#{sanitized_value}%'" if value.present?
         when 'regex'
           "#{backend_field} ~ '#{sanitized_value}'" if value.present?
         else
