@@ -13,6 +13,7 @@ class <%= tabulator_name %> < AjaxTabulatorRails::ActiveRecord
   def data
     records.map do |record|
       {
+        # content: record.content
         # Map your data here
       }
     end
@@ -33,11 +34,11 @@ class <%= tabulator_name %> < AjaxTabulatorRails::ActiveRecord
   # This is useful when you want to display data from associations in
   # the Tabulator columns, such as fields from `comments` or `tags` tables.
   def field_mappings
-    # {
+    {
     #   'comments_message' => 'comments.message',  Maps to the message field from comments table
     #   'tags_name' => 'tags.name',                Maps to the name field from the tags table
     #   'id' => 'posts.id',                        Maps to the ID field from the posts table
     #   'created_at' => 'posts.created_at'         Maps to the created_at field from the posts table
-    # }
+    }
   end
 end
