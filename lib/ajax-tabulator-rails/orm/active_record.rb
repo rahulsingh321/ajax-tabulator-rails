@@ -112,7 +112,7 @@ module AjaxTabulatorRails
       end
 
       def searchable_columns
-        view_columns.select { |column| column[:field].present? }
+        view_columns.reject { |column| column[:headerFilter] == false }
       end
 
       def escape_like_query(value)
