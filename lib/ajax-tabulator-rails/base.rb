@@ -25,8 +25,13 @@ module AjaxTabulatorRails
         data: sanitize_data(data),
         last_page: calculate_last_page,
         las_row: records_total_count,
-        columns: view_columns
+        columns: visible_columns
       }
+    end
+
+     # send columns to tabulator table which we need to availabe on table
+     def visible_columns
+      retrieve_visible_columns(options[:columns])
     end
 
     def field_mappings
@@ -60,6 +65,16 @@ module AjaxTabulatorRails
         else
           record.update(record) { |_, v| ERB::Util.html_escape(v) }
         end
+      end
+    end
+
+    def retrieve_visible_columns(allowed_columns)
+      view_columns_hash = view_columns.index_by { |col| col[:field] }
+
+      if allowed_columns.present?
+        allowed_columns.map { |field| view_columns_hash[field] }.compact
+      else
+        view_columns
       end
     end
 
