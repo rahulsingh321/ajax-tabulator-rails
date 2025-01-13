@@ -79,7 +79,7 @@ module AjaxTabulatorRails
     end
 
     def calculate_last_page
-      records_filtered_count / params[:size].to_i
+      (records_filtered_count / params[:size].to_i) + 1
     end
 
     def records_total_count
