@@ -24,7 +24,7 @@ module AjaxTabulatorRails
       {
         data: sanitize_data(data),
         last_page: calculate_last_page,
-        las_row: records_total_count,
+        last_row: records_filtered_count,
         columns: visible_columns
       }
     end
@@ -79,7 +79,9 @@ module AjaxTabulatorRails
     end
 
     def calculate_last_page
-      (records_filtered_count / params[:size].to_i) + 1
+      last_page = records_filtered_count / params[:size].to_i
+      last_page += 1 if records_filtered_count % params[:size].to_i > 0
+      last_page
     end
 
     def records_total_count
